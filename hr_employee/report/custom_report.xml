@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+        <report
+            id="report_crm_custom"
+            model="employee"
+            string="CRM Custom Report"
+            report_type="qweb-pdf"
+            name="hr_employee.report_crm_custom"
+            file="hr_employee.report_crm_custom"
+        />
+    </data>
+</odoo>

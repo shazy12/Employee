@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <menuitem id="menu_employee_root"
+              name="Employee"
+              sequence="10"/>
+    <menuitem id="menu_employee_subemployee"
+              name="Sub Employee"
+              parent='menu_employee_root'
+              sequence="10"/>
+    <menuitem id="menu_employee_employeedata"
+              name="Employee Data"
+              parent='menu_employee_subemployee'
+              sequence="10"/>
+
+    <!--    <menuitem id="menu_hospital_operations"-->
+    <!--        name="Operations"-->
+    <!--        parent="menu_hospital_root"-->
+    <!--              sequence="10"/>-->
+
+    <!--    <menuitem id="menu_patients"-->
+    <!--        name="Operations"-->
+    <!--        parent="menu_hospital_operations"-->
+    <!--              sequence="10"/>-->
+
+
+</odoo>

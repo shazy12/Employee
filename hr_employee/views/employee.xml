@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="view_employee_form" model="ir.ui.view">
+        <field name="name">employee.form</field>
+        <field name="model">employee</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <!--                            <field name="name"/>-->
+                        </h1>
+                        <field name="image" widget="image" class="oe_avatar" options='{"size": [80, 80]}'/>
+                    </div>
+                    <group>
+                        <field name="cnic"/>
+                        <field name="name"/>
+                        <field name="job"/>
+                        <field name="tag"/>
+                        <!--                        <field name="image"/>-->
+
+                    </group>
+                    <group>
+                        <group>
+                            <field name="mobile"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <!--                            <field name="cnic"/>-->
+<!--                             <button name="action_insert_employee" string="Import Data" type="object" class="oe_highlight"/>-->
+
+
+                        </group>
+                        <group>
+                            <field name="department"/>
+                            <field name="job_id"/>
+                            <field name="manager"/>
+                            <field name="coach"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <!-- Work Information -->
+                        <page string="Work Information">
+                            <head>
+                                <style type="text/css">
+                                    .location-header {
+                                    border-bottom: 2px solid #000; /* Change color and width as needed */
+                                    padding-bottom: 5px; /* Adjust the spacing between text and underline */
+                                    margin: 0; /* Remove margin */
+                                    }
+                                    .address-field {
+                                    padding-left: 100px; /* Adjust the left padding as needed */
+                                    }
+                                    .alert {
+                                    background-color: #ADD8E6; /* Red background color */
+                                    color: black; /* White text color */
+                                    padding: 20px; /* Padding inside the alert box */
+                                    border-radius: 10px; /* Rounded corners */
+                                    margin-top: 10px; /* Adjust the margin as needed */
+                                    }
+                                </style>
+                            </head>
+                            <body>
+                                <!--                                <field name="work_notes" widget="html"/>-->
+                                <h2 class="location-header">Location</h2>
+                                <label for="address_id" class="oe_form_field_label">Work Address</label>
+                                <!--                                <h2 class = "work-address">Work Adddress</h2>-->
+                                <field name="address_id"/>
+                                <field name="address" class="address-field"/>
+                                <label for="work_location_id" class="oe_form_field_label">Work Location</label>
+                                <field name="work_location_id"/>
+                                <h2 class="location-header">APPROVES</h2>
+                                <label for="timesheet" class="oe_form_field_label">Timesheet</label>
+                                <field name="timesheet"/>
+                                <h2 class="location-header">SCHEDULE</h2>
+                                <div class="field-pair">
+                                    <label for="working_hours" class="oe_form_field_label">Working Hours</label>
+                                    <field name="working_hours"/>
+                                </div>
+                                <div class="field-pair">
+                                    <label for="tz" class="oe_form_field_label">Timezone</label>
+                                    <field name="tz"/>
+                                </div>
+                                <h2 class="location-header">PLANNING</h2>
+                                <div class="field-pair">
+                                    <label for="role" class="oe_form_field_label">Roles</label>
+                                    <field name="role"/>
+                                </div>
+                                <div class="field-pair">
+                                    <label for="default_role" class="oe_form_field_label">Default Role</label>
+                                    <field name="default_role"/>
+                                </div>
+                                <h2 class="location-header">ORGANIZATION CHART</h2>
+                                <div class="alert">
+                                    <p>No hierarchy position.</p>
+                                    <p>This employee has no manager or subordinate</p>
+                                    <p>In order to get an organigram, set a manager and save the record..</p>
+                                </div>
+                            </body>
+                        </page>
+
+                        <!-- Private Information -->
+                        <page string="Private Information">
+                            <field name="private_notes" widget="html"/>
+                        </page>
+
+                        <!-- HR Setting -->
+                        <page string="HR Setting">
+                            <field name="hr_setting_notes" widget="html"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_employee_tree" model="ir.ui.view">
+        <field name="name">employee.tree</field>
+        <field name="model">employee</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="image"/>
+                <field name="job"/>
+                <field name="tag"/>
+                <field name="mobile"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="cnic"/>
+                <field name="department"/>
+                <field name="job_id"/>
+                <field name="manager"/>
+                <field name="coach"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_employee" model="ir.actions.act_window">
+        <field name="name">Employee</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee</field>
+        <field name="view_mode">tree,form</field>
+        <!--        <field name="search_view_id" ref="om_hospital.view_hospital_patient_search"/>-->
+    </record>
+
+<!--    <record id="action_insert_employee" model="ir.actions.server">-->
+<!--    <field name="name">Insert Employee</field>-->
+<!--    <field name="model_id" ref="employee"/>  &lt;!&ndash; Replace "your_module_name" with your actual module name &ndash;&gt;-->
+<!--    <field name="state">code</field>-->
+<!--    <field name="code">model.create_employee()</field>-->
+<!--</record>-->
+
+
+    <menuitem id="menu_employee_employeedata"
+              name="Employee Data"
+              parent='menu_employee_subemployee'
+              action="action_employee"
+              sequence="10"/>
+</odoo>
+
+
+        <!-- <notebook>-->
+        <!--                    <page string="Contact Info">-->
+        <!--                        <group>-->
+        <!--                            <field name="mobile"/>-->
+        <!--                            <field name="phone"/>-->
+        <!--                            <field name="email"/>-->
+        <!--                        </group>-->
+        <!--                    </page>-->
+        <!--                    <page string="Additional Info">-->
+        <!--                        <group>-->
+        <!--                            <field name="department"/>-->
+        <!--                            <field name="cnic"/>-->
+        <!--                            <field name="manager"/>-->
+        <!--                            <field name="coach"/>-->
+        <!--                        </group>-->
+        <!--                    </page>-->
+        <!--                </notebook>-->
