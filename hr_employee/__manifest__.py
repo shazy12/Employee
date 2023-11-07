@@ -8,8 +8,7 @@
         'views/menu.xml',
         'views/employee.xml',
         'views/department.xml',
-        'report/report_card.xml',
-        'report/custom_report.xml',
+      
 
         # 'views/work_location.xml',
     ]
