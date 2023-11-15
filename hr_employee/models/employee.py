@@ -49,11 +49,34 @@ class Employee(models.Model):
     address = fields.Text(string="Address", compute="_compute_employee_address")
 
 
-    @api.constrains('cnic')
+    # @api.constrains('cnic')
+    # def _check_cnic_length(self):
+    #     for record in self:
+    #         if record.cnic and len(record.cnic) != 13:
+    #             raise ValidationError("CNIC must be exactly 13 characters.")
+
+    @api.onchange('cnic')
     def _check_cnic_length(self):
         for record in self:
             if record.cnic and len(record.cnic) != 13:
                 raise ValidationError("CNIC must be exactly 13 characters.")
+
+    @api.onchange('cnic')
+    def _onchange_check_cnic(self):
+        if self.cnic and not self.cnic.isdigit():
+            raise ValidationError("The CNIC value must be Number.")
+
+    # @api.constrains('cnic')
+    # def _check_integer_value(self):
+    #     for record in self:
+    #         if record.cnic and not record.cnic.isdigit():
+    #             raise ValidationError("The  CNIC value must be an integer.")
+
+    # @api.constrains('cnic')
+    # def _check_integer_value(self):
+    #     for record in self:
+    #         if record.cnic and not record.cnic.isdigit() and not record.id:
+    #             raise ValidationError("The CNIC value must be an integer.")
 
         # Define your create_employee function
 
